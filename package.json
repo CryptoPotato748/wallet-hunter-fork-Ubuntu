@@ -13,6 +13,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-spring": "^9.7.3",
+    "react-tsparticles": "^2.12.2",
     "tsparticles": "^3.3.0"
   },
   "devDependencies": {
