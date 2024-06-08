@@ -1,6 +1,6 @@
-# crypto-wallet-bruteforce
+# wallet-hunter
 
-`crypto-wallet-bruteforce` is a tool for brute forcing crypto wallets
+`wallet-hunter` is a tool for brute forcing crypto wallets
 
 ## **Disclaimer**
 
@@ -26,6 +26,7 @@ If you do not agree to these terms, please do not use or distribute this code.
 All you need is very good internet connection and few python libraries to be installed at the running device.
 
 Follow the below steps one by one if you are starting from scratch. For already experienced people, you know it. Just skip few steps and have a short glace at it.
+Api keys already writed in config.ini, for you, enjoy
 
 **Let's go.........**
 
@@ -53,19 +54,17 @@ Alright, initial setup process is completed. Now, we are ready to run the script
 
 To run this script on this version, run crypto-wallet-bruteforce from the command line:
 ```
-cd crypto-wallet-bruteforce\python\ 
+git clone https://github.com/zick1/wallet-hunter
+cd wallet-hunter
 ```
 `Make sure you are on right path. Then type:`
 ```
 python run.py
 ```
-
-Now, the script will start to run and will display the updates on the screen.
-
-## Updates
+Now, the script will start
 
 - V1.0.0
-`crypto-wallet-bruteforce` now supports detection having Balance and Transaction(s) of bsc, eth and polygon network.
+ `wallet-hunter`now supports detection having Balance and Transaction(s) of bsc, eth and polygon network.
 
 # How to open the discovered wallet?
 
@@ -73,11 +72,11 @@ Now, the script will start to run and will display the updates on the screen.
 
 ### Wallets having Balance
 
-Navigate to `crypto-wallet-bruteforce\python\hasBalance\` folder. There you can see all the wallets details which has amount on it. 
+Navigate to `\wallet-hunter\hasBalance\` folder. There you can see all the wallets details which has amount on it. 
 
 ### Wallets having Transaction(s)
 
-Navigate to `crypto-wallet-bruteforce\python\hasTransaction\` folder. There you can see all the wallets details which has transaction(s) on it. 
+Navigate to `wallet-hunter\hasTransaction\` folder. There you can see all the wallets details which has transaction(s) on it. 
 
 ## Limitations
 
@@ -92,9 +91,7 @@ Feel free to open an issue if you find a problem, or a pull request if you've so
 
 ## License
 This project is under GPL-3.0 license. 
-```
-https://github.com/niyankhadka/crypto-wallet-bruteforce/blob/main/LICENSE
-```
+
 ## Thank Note
 
 Thanks to **https://github.com/meherett/python-hdwallet** for the awesome python library you have created.
