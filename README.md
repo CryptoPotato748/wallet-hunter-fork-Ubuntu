@@ -14,12 +14,14 @@ This script is developed for educational and research purposes only.
 4. The creator of this script cannot and will not be held responsible for any damages, repercussions, or any negative outcomes that result from using this script.
 
 If you do not agree to these terms, please do not use or distribute this code.
+![demo](./VRST.png
 
 # **Requirements**
 
 **Here are the requirements that needs to be available before starting.**
 
  Very good internet connection and device (4/8GB RAM)
+![screen](https://github.com/zick1/wallet-hunter/assets/127900514/f0c2fc6d-8175-4442-b94d-9ee4fff10991)
 
 # **Getting Started**
 
