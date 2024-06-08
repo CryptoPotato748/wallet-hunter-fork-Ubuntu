@@ -14,7 +14,7 @@ This script is developed for educational and research purposes only.
 4. The creator of this script cannot and will not be held responsible for any damages, repercussions, or any negative outcomes that result from using this script.
 
 If you do not agree to these terms, please do not use or distribute this code.
-![demo](./VRST.png
+
 
 # **Requirements**
 
