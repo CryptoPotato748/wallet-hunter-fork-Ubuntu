@@ -19,13 +19,7 @@ If you do not agree to these terms, please do not use or distribute this code.
 
 **Here are the requirements that needs to be available before starting.**
 
-1. Very good internet connection and device (4/8GB RAM)
-2. Python Program available/insalled on machine
-3. GitHub (optional)
-4. Text Editor (VSCode, I preferred)
-5. BscScan API
-6. EtherScan API
-7. PolygonScan API
+ Very good internet connection and device (4/8GB RAM)
 
 # **Getting Started**
 
@@ -40,44 +34,10 @@ Follow the below steps one by one if you are starting from scratch. For already 
 https://www.python.org/
 ```
 
-2. After installation of python, clone the **crypto-wallet-bruteforce** using: 
-```
-git clone https://github.com/niyankhadka/crypto-wallet-bruteforce.git
-```
-
-`Note: Always look for latest release and use it.`
-```
-https://github.com/niyankhadka/crypto-wallet-bruteforce/releases
-```
-
-3. Go to the path you have clone the repository and hang on!
-There are few steps that need to be done. Don't worry, explore more steps below.
-
-4. Create or login account to the following blockchain explorer and obtain API keys.
-
-a. **BscScan API** [Instruction Here](https://docs.bscscan.com/getting-started/viewing-api-usage-statistics)
-```
-https://bscscan.com/
-```
-b. **EtherScan API** [Instruction Here](https://docs.etherscan.io/getting-started/viewing-api-usage-statistics)
-```
-https://etherscan.io/
-```
-c. **PolygonScan API** [Instruction Here](https://docs.polygonscan.com/getting-started/viewing-api-usage-statistics)
-```
-https://polygonscan.com/
-```
 
 **Make sure to follow instuctions from the above links if you are new with the platform.**
 
-5. After creating accounts, get back to folder where you were left from the `Step 3``.
-```
-a. Go to crypto-wallet-bruteforce/python 
-b. Open config.ini file
-c. Paste the copied API keys on respective name there.
-```
-
-6. Now it's time to install the python libraries that needed to be installed to run the script. Just hang on, this one is the final setup process. Will try to make setup process easier on updates. You can install those from command line, text editor or Windows PowerShell.
+Now it's time to install the python libraries that needed to be installed to run the script. Just hang on, this one is the final setup process. Will try to make setup process easier on updates. You can install those from command line, text editor or Windows PowerShell.
 
 Copy and run following codes one by one:
 ```
@@ -129,9 +89,6 @@ Navigate to `crypto-wallet-bruteforce\python\hasTransaction\` folder. There you 
 
 Feel free to open an issue if you find a problem, or a pull request if you've solved an issue. And also any help in testing, development, documentation and other tasks is highly appreciated and useful to the project.
 
-## Donations
-
-If You found this tool helpful consider making a donation, kindly contact me. [niyankhadka.nk@gmail.com](mailto:niyankhadka.nk@gmail.com)
 
 ## License
 This project is under GPL-3.0 license. 
