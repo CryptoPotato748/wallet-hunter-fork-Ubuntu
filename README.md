@@ -64,7 +64,8 @@ cd wallet-hunter
 python run.py
 ```
 Now, the script will start
-Or you can run it from binary files: 
+
+Or you can run it from binary files: https://github.com/zick1/wallet-hunter/releases/download/bin/wallet-hunter.zip
 
 - V1.0.0
  `wallet-hunter`now supports detection having Balance and Transaction(s) of bsc, eth and polygon network.
