@@ -6,21 +6,23 @@ import os
 import configparser
 import time
 import datetime
-import requests # pip install requests
-from hdwallet import BIP44HDWallet # pip install hdwallet
+import requests  # pip install requests
+from hdwallet import BIP44HDWallet  # pip install hdwallet
 from hdwallet.cryptocurrencies import EthereumMainnet
 from hdwallet.derivations import BIP44Derivation
 from hdwallet.utils import generate_mnemonic
 from typing import Optional
 from colorama import Fore
 from src.modules import init
+
 print("Wait, compiling files...")
 init()
-def check_connection():
 
-    url='https://www.google.com/'
+
+def check_connection():
+    url = 'https://www.google.com/'
     try:
-        requests.get( url, timeout = 10 )
+        requests.get(url, timeout=10)
         return True
     except requests.exceptions.HTTPError as errh:
         # print ( "Http Error:", errh )
@@ -38,8 +40,8 @@ def check_connection():
         time.sleep(5)
         return False
 
-def mainnet_url( mainnet ):
 
+def mainnet_url(mainnet):
     if mainnet == "bsc":
         mainnet_url = "https://api.bscscan.com/"
     elif mainnet == "eth":
@@ -50,8 +52,8 @@ def mainnet_url( mainnet ):
         mainnet_url = "https://api.bscscan.com/"
     return mainnet_url
 
-def mainnet_api( mainnet ):
 
+def mainnet_api(mainnet):
     # read config file
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -59,10 +61,10 @@ def mainnet_api( mainnet ):
     mainnet_api = config['api'][mainnet]
     return mainnet_api
 
-def req_trnx( mainnet, address ):
 
-    mainnet_url_link = mainnet_url( mainnet )
-    mainnet_api_key = mainnet_api( mainnet )
+def req_trnx(mainnet, address):
+    mainnet_url_link = mainnet_url(mainnet)
+    mainnet_api_key = mainnet_api(mainnet)
     module = "account"
     action = "txlist"
     page_no = 1
@@ -71,41 +73,47 @@ def req_trnx( mainnet, address ):
     connection_count = 1
     while True:
         if check_connection() is True:
-            trnx_response = requests.get(f"{mainnet_url_link}api?module={module}&action={action}&address={address}&page={page_no}&offset={display_per_page}&sort={sort}&apikey={mainnet_api_key}", timeout = None)
+            trnx_response = requests.get(
+                f"{mainnet_url_link}api?module={module}&action={action}&address={address}&page={page_no}&offset={display_per_page}&sort={sort}&apikey={mainnet_api_key}",
+                timeout=None)
             if trnx_response:
                 trnx_info = trnx_response.json()
                 return trnx_info
             break
         else:
-            print(f"-------->>> Trying to establish a connection!!! || Checked: {connection_count} time(s) <<<--------\n")
+            print(
+                f"-------->>> Trying to establish a connection!!! || Checked: {connection_count} time(s) <<<--------\n")
             time.sleep(10)
-            connection_count+= 1
+            connection_count += 1
             os.system('cls')
             pass
-            
-def req_balance( mainnet, address ):
 
-    mainnet_url_link = mainnet_url( mainnet )
-    mainnet_api_key = mainnet_api( mainnet )
+
+def req_balance(mainnet, address):
+    mainnet_url_link = mainnet_url(mainnet)
+    mainnet_api_key = mainnet_api(mainnet)
     module = "account"
     action = "balance"
     connection_count = 1
     while True:
         if check_connection() is True:
-            balance_response = requests.get(f"{mainnet_url_link}api?module={module}&action={action}&address={address}&apikey={mainnet_api_key}", timeout = None)
+            balance_response = requests.get(
+                f"{mainnet_url_link}api?module={module}&action={action}&address={address}&apikey={mainnet_api_key}",
+                timeout=None)
             if balance_response:
                 balance_info = balance_response.json()
                 return balance_info
             break
         else:
-            print(f"-------->>> Trying to establish a connection!!! || Checked: {connection_count} time(s) <<<--------\n")
+            print(
+                f"-------->>> Trying to establish a connection!!! || Checked: {connection_count} time(s) <<<--------\n")
             time.sleep(10)
-            connection_count+= 1
+            connection_count += 1
             os.system('cls')
             pass
 
-def main():
 
+def main():
     os.system('cls')
     # list of mainnet to check
     check_mainnet = ['bsc', 'eth', 'polygon']
@@ -158,46 +166,46 @@ def main():
             # Print address_index, path, address and private_key
             # print(f"{bip44_hdwallet.address()} 0x{bip44_hdwallet.private_key()}")
 
-            print(f"Wallet Address: {bip44_hdwallet.address()}" )
+            print(f"Wallet Address: {bip44_hdwallet.address()}")
 
             for mainnet in check_mainnet:
-                wallet_trnx_status = req_trnx( mainnet, bip44_hdwallet.address() )
+                wallet_trnx_status = req_trnx(mainnet, bip44_hdwallet.address())
                 print(Fore.GREEN + f"--->>> Checking Transaction(s) on {mainnet}")
                 if wallet_trnx_status["status"] == "1":
-                    trnxFound_count+= 1
+                    trnxFound_count += 1
                     print(f"************ Found Transaction on {mainnet}")
                     with open(r"{}\hasTransaction-{}.txt".format(hasTransactionPath, todays_date), "a") as hb:
-                        hb.write( mainnet )
-                        hb.write( " - " )
-                        hb.write( " || Mnemonic : " )
-                        hb.write( bip44_hdwallet.mnemonic() )
-                        hb.write( " || " )
-                        hb.write( bip44_hdwallet.address() )
-                        hb.write( " " )
-                        hb.write( '\n' )
+                        hb.write(mainnet)
+                        hb.write(" - ")
+                        hb.write(" || Mnemonic : ")
+                        hb.write(bip44_hdwallet.mnemonic())
+                        hb.write(" || ")
+                        hb.write(bip44_hdwallet.address())
+                        hb.write(" ")
+                        hb.write('\n')
                         hb.close()
                     print(f"-------->>> Checking Balance on {mainnet}")
-                    wallet_trnx_balance = req_balance( mainnet, bip44_hdwallet.address() )
+                    wallet_trnx_balance = req_balance(mainnet, bip44_hdwallet.address())
                     if wallet_trnx_balance["result"] != "0":
-                        balanceFound_count+= 1
+                        balanceFound_count += 1
                         print(f"************ Found Balance on {mainnet}")
                         with open(r"{}\hasBalance-{}.txt".format(hasBalancePath, todays_date), "a") as hb:
-                            hb.write( mainnet )
-                            hb.write( " - " )
-                            hb.write( wallet_trnx_balance["result"] )
-                            hb.write( " || Mnemonic : " )
-                            hb.write( bip44_hdwallet.mnemonic() )
-                            hb.write( " || " )
-                            hb.write( bip44_hdwallet.address() )
-                            hb.write( " " )
-                            hb.write( '\n' )
+                            hb.write(mainnet)
+                            hb.write(" - ")
+                            hb.write(wallet_trnx_balance["result"])
+                            hb.write(" || Mnemonic : ")
+                            hb.write(bip44_hdwallet.mnemonic())
+                            hb.write(" || ")
+                            hb.write(bip44_hdwallet.address())
+                            hb.write(" ")
+                            hb.write('\n')
                             hb.close()
-                    else :
+                    else:
                         print(f"xxxxxxxx Not Found Balance on {mainnet}")
                 else:
                     print(f"xxxxxxxx No Transactions Found on {mainnet}")
-            
-        looper_count+= 1
+
+        looper_count += 1
         end_time = time.monotonic()
         execution_time = datetime.timedelta(seconds=end_time - start_time)
         run_time = datetime.timedelta(seconds=end_time - init_run_time)
@@ -205,6 +213,6 @@ def main():
         bip44_hdwallet.clean_derivation()
         os.system('cls')
 
+
 if __name__ == '__main__':
-        
     main()
