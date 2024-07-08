@@ -6,6 +6,7 @@
 
 This script is developed for educational and research purposes only. CRYPTOPOTATO748 did the fork because it wasn't working on my Linux ubuntu, i decided to try resolve the issue even tho i don't think it works perfectly i invite you to fork my fork and make it better if you can.
 I'm afraid the script does not save the wallets that arents void and transactionless but i'm not sure about it yet. Still testing but here you are.
+The script was crashing before and not running infitively but now it seems to do so. Let's see how it goes i will keep you in touch.
 
 **By using this code, you agree to the following:**
 
