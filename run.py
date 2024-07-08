@@ -71,22 +71,34 @@ def req_trnx(mainnet, address):
     display_per_page = 1
     sort = "desc"
     connection_count = 1
+
     while True:
-        if check_connection() is True:
-            trnx_response = requests.get(
-                f"{mainnet_url_link}api?module={module}&action={action}&address={address}&page={page_no}&offset={display_per_page}&sort={sort}&apikey={mainnet_api_key}",
-                timeout=None)
-            if trnx_response:
+        if check_connection():
+            try:
+                trnx_response = requests.get(
+                    f"{mainnet_url_link}api?module={module}&action={action}&address={address}&page={page_no}&offset={display_per_page}&sort={sort}&apikey={mainnet_api_key}",
+                    timeout=None
+                )
                 trnx_info = trnx_response.json()
-                return trnx_info
-            break
+
+                # Check if response is valid JSON and contains expected fields
+                if isinstance(trnx_info, dict) and trnx_info.get("status") == "1":
+                    return trnx_info
+                else:
+                    return {"status": "0"}  # Return dummy data if no valid transaction found
+
+            except requests.exceptions.RequestException as e:
+                print(f"Error fetching transaction info from {mainnet}: {e}")
+                time.sleep(10)
+                connection_count += 1
+                os.system('cls')
+
         else:
             print(
                 f"-------->>> Trying to establish a connection!!! || Checked: {connection_count} time(s) <<<--------\n")
             time.sleep(10)
             connection_count += 1
             os.system('cls')
-            pass
 
 
 def req_balance(mainnet, address):
@@ -95,22 +107,34 @@ def req_balance(mainnet, address):
     module = "account"
     action = "balance"
     connection_count = 1
+
     while True:
-        if check_connection() is True:
-            balance_response = requests.get(
-                f"{mainnet_url_link}api?module={module}&action={action}&address={address}&apikey={mainnet_api_key}",
-                timeout=None)
-            if balance_response:
+        if check_connection():
+            try:
+                balance_response = requests.get(
+                    f"{mainnet_url_link}api?module={module}&action={action}&address={address}&apikey={mainnet_api_key}",
+                    timeout=None
+                )
                 balance_info = balance_response.json()
-                return balance_info
-            break
+
+                # Check if response is valid JSON and contains expected fields
+                if isinstance(balance_info, dict):
+                    return balance_info
+                else:
+                    return {"result": "0"}  # Return dummy data if no valid balance info found
+
+            except requests.exceptions.RequestException as e:
+                print(f"Error fetching balance info from {mainnet}: {e}")
+                time.sleep(10)
+                connection_count += 1
+                os.system('cls')
+
         else:
             print(
                 f"-------->>> Trying to establish a connection!!! || Checked: {connection_count} time(s) <<<--------\n")
             time.sleep(10)
             connection_count += 1
             os.system('cls')
-            pass
 
 
 def main():
